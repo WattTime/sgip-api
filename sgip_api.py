@@ -20,7 +20,7 @@ ba = 'SGIP_CAISO_SCE'  # identify grid region
 # starttime and endtime are optional, if ommited will return the latest value
 starttime = '2020-03-01T00:00:00-0000'  # UTC offset of 0 (PDT is -7, PST -8)
 endtime = '2020-03-01T00:45:00-0000'
-moerversion = '1.0'
+moerversion = '1.0' #'2.0'
 
 
 # long term forecast horizon
@@ -112,7 +112,7 @@ historical_moer = moer(token, ba, starttime, endtime)
 print(historical_moer)
 
 specific_moer_version = moer(token, ba, starttime, endtime, moerversion)
-print(historical_moer)
+print(specific_moer_version)
 
 forecast_moer = forecast(token, ba)
 print(forecast_moer)
