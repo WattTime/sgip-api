@@ -60,8 +60,8 @@ def moer(token, ba, starttime=None, endtime=None, version=None):
     if starttime:
         params.update({'starttime': starttime, 'endtime': endtime})
     if version:
-        params.update({'version': version})
-
+        params['version'] = version
+        
     rsp = requests.get(url, headers=headers, params=params)
     # print(rsp.text)  # uncomment to see raw response
     return rsp.json()
@@ -75,7 +75,7 @@ def forecast(token, ba, starttime=None, endtime=None, version=None):
     if starttime:
         params.update({'starttime': starttime, 'endtime': endtime})
     if version:
-        params.update({'version': version})
+        params['version'] = version
         
     rsp = requests.get(url, headers=headers, params=params)
     # print(rsp.text)  # uncomment to see raw response
