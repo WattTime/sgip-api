@@ -58,7 +58,7 @@ def moer(token, ba, starttime=None, endtime=None, version=None):
     headers = {'Authorization': 'Bearer {}'.format(token)}
     params = {'ba': ba}
     if starttime:
-        params.update({'starttime': starttime, 'endtime': endtime, 'version'=version})
+        params.update({'starttime': starttime, 'endtime': endtime, 'version': version})
 
     rsp = requests.get(url, headers=headers, params=params)
     # print(rsp.text)  # uncomment to see raw response
@@ -71,7 +71,7 @@ def forecast(token, ba, starttime=None, endtime=None, version=None):
 
     params = {'ba': ba}
     if starttime:
-        params.update({'starttime': starttime, 'endtime': endtime, 'version'=version})
+        params.update({'starttime': starttime, 'endtime': endtime, 'version': version})
 
     rsp = requests.get(url, headers=headers, params=params)
     # print(rsp.text)  # uncomment to see raw response
