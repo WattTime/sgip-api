@@ -20,7 +20,7 @@ ba = 'SGIP_CAISO_SCE'  # identify grid region
 # starttime and endtime are optional, if ommited will return the latest value
 starttime = '2020-03-01T00:00:00-0000'  # UTC offset of 0 (PDT is -7, PST -8)
 endtime = '2020-03-01T00:45:00-0000'
-moerversion = '1.0' #'2.0'
+moer_version = '1.0' #'2.0'
 
 
 # long term forecast horizon
@@ -58,7 +58,9 @@ def moer(token, ba, starttime=None, endtime=None, version=None):
     headers = {'Authorization': 'Bearer {}'.format(token)}
     params = {'ba': ba}
     if starttime:
-        params.update({'starttime': starttime, 'endtime': endtime, 'version': version})
+        params.update({'starttime': starttime, 'endtime': endtime})
+    if version:
+        params.update({'version': version})
 
     rsp = requests.get(url, headers=headers, params=params)
     # print(rsp.text)  # uncomment to see raw response
@@ -71,8 +73,10 @@ def forecast(token, ba, starttime=None, endtime=None, version=None):
 
     params = {'ba': ba}
     if starttime:
-        params.update({'starttime': starttime, 'endtime': endtime, 'version': version})
-
+        params.update({'starttime': starttime, 'endtime': endtime})
+    if version:
+        params.update({'version': version})
+        
     rsp = requests.get(url, headers=headers, params=params)
     # print(rsp.text)  # uncomment to see raw response
     return rsp.json()
