@@ -115,7 +115,7 @@ print(realtime_moer)
 historical_moer = moer(token, ba, starttime, endtime)
 print(historical_moer)
 
-specific_moer_version = moer(token, ba, starttime, endtime, moerversion)
+specific_moer_version = moer(token, ba, starttime, endtime, moer_version)
 print(specific_moer_version)
 
 forecast_moer = forecast(token, ba)
