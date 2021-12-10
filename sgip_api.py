@@ -20,6 +20,7 @@ ba = 'SGIP_CAISO_SCE'  # identify grid region
 # starttime and endtime are optional, if ommited will return the latest value
 starttime = '2020-03-01T00:00:00-0000'  # UTC offset of 0 (PDT is -7, PST -8)
 endtime = '2020-03-01T00:45:00-0000'
+moer_version = '1.0' #'2.0'
 
 
 # long term forecast horizon
@@ -52,26 +53,30 @@ def login(username, password):
         return None
 
 
-def moer(token, ba, starttime=None, endtime=None):
+def moer(token, ba, starttime=None, endtime=None, version=None):
     url = 'https://sgipsignal.com/sgipmoer'
     headers = {'Authorization': 'Bearer {}'.format(token)}
     params = {'ba': ba}
     if starttime:
         params.update({'starttime': starttime, 'endtime': endtime})
-
+    if version:
+        params['version'] = version
+        
     rsp = requests.get(url, headers=headers, params=params)
     # print(rsp.text)  # uncomment to see raw response
     return rsp.json()
 
 
-def forecast(token, ba, starttime=None, endtime=None):
+def forecast(token, ba, starttime=None, endtime=None, version=None):
     url = 'https://sgipsignal.com/sgipforecast'
     headers = {'Authorization': 'Bearer {}'.format(token)}
 
     params = {'ba': ba}
     if starttime:
         params.update({'starttime': starttime, 'endtime': endtime})
-
+    if version:
+        params['version'] = version
+        
     rsp = requests.get(url, headers=headers, params=params)
     # print(rsp.text)  # uncomment to see raw response
     return rsp.json()
@@ -109,6 +114,9 @@ print(realtime_moer)
 
 historical_moer = moer(token, ba, starttime, endtime)
 print(historical_moer)
+
+specific_moer_version = moer(token, ba, starttime, endtime, moer_version)
+print(specific_moer_version)
 
 forecast_moer = forecast(token, ba)
 print(forecast_moer)
